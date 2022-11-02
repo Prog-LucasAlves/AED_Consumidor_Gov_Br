@@ -4,9 +4,9 @@
 
 1. Python
 
-- Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/principal/?1652964614719)*
+- Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados ate o mês 08/2022 - Atualizado dia 03/09/2022
+- Dados ate o mês 09/2022 - Atualizado dia 02/11/2022
 
 ## 💬 Sobre o Serviço
 
@@ -17,13 +17,13 @@
 **Considerações:**
 
 - Após a união do arquivos CSVs, o DataFrame ficou com 912.721 registros.
-- Foi verificado que o DataFrame havia 2.75% de valores ausentes(Em 3 colunas do DataFrame).
+- Foi verificado que o DataFrame havia 2.74% de valores ausentes(Em 3 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 458416 | 50.23 |
-| Tempo Resposta | 18064 | 1.98 |
-| Sexo | 78 | 0.01 |
+| Nota do Consumidor | 502680 | 49.92 |
+| Tempo Resposta | 20839 | 2.07 |
+| Sexo | 83 | 0.01 |
 
 **Etapas:**
 
