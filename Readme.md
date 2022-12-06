@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados ate o mês 09/2022 - Atualizado dia 02/11/2022
+- Dados ate o mês 11/2022 - Atualizado dia 02/12/2022
 
 ## 💬 Sobre o Serviço
 
@@ -16,14 +16,14 @@
 
 **Considerações:**
 
-- Após a união do arquivos CSVs, o DataFrame ficou com 912.721 registros.
-- Foi verificado que o DataFrame havia 2.74% de valores ausentes(Em 3 colunas do DataFrame).
+- Após a união do arquivos CSVs, o DataFrame ficou com 1188519 registros e 19 colunas.
+- Foi verificado que o DataFrame havia 2.73% de valores ausentes(Em 3 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 502680 | 49.92 |
-| Tempo Resposta | 20839 | 2.07 |
-| Sexo | 83 | 0.01 |
+| Nota do Consumidor | 591305 | 49.75 |
+| Tempo Resposta | 24924 | 2.10 |
+| Sexo | 89 | 0.01 |
 
 **Etapas:**
 
@@ -36,6 +36,8 @@
 2. linhas Duplicadas
 
     1. Foram eliminadas do Dataframe as linhas duplicadas.
+
+- Após as transformações realizadas o DataSet ficou com 1184928 registros e 19 colunas.
 
 ## ![Perguntas a serem respondidas](https://cdn-icons-png.flaticon.com/24/4501/4501315.png) Perguntas a serem respondidas
 
