@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "aed-consumidor-gov-br"
+version = "0.1.0"
+description = ""
+authors = ["Prog-LucasAlves <lucasalves_taz@hotmail.com>"]
+readme = "README.md"
+packages = [{include = "aed_consumidor_gov_br"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
