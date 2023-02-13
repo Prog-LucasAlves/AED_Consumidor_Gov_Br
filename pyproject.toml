@@ -8,7 +8,14 @@ packages = [{include = "aed_consumidor_gov_br"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pandas = "^1.5.3"
+fastparquet = "^2023.2.0"
+matplotlib = "^3.6.3"
+seaborn = "^0.12.2"
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.21.1"
 
 [build-system]
 requires = ["poetry-core"]
