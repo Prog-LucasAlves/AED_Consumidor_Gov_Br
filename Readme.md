@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados ate o mês 11/2022 - Atualizado dia 02/12/2022
+- Dados ate o mês 04/2023 - Atualizado dia 06/05/2023
 
 ## 💬 Sobre o Serviço
 
