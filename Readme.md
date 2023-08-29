@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados ate o mês 04/2023 - Atualizado dia 06/05/2023
+- Dados ate o mês 07/2023 - Atualizado dia 29/08/2023
 
 ## 💬 Sobre o Serviço
 
@@ -16,22 +16,24 @@
 
 **Considerações:**
 
-- Após a união do arquivos CSVs, o DataFrame ficou com 1188519 registros e 19 colunas.
-- Foi verificado que o DataFrame havia 2.73% de valores ausentes(Em 3 colunas do DataFrame).
+- Após a união do arquivos CSVs, o DataFrame ficou com 2046325 registros e 19 colunas.
+- Foi verificado que o DataFrame havia 2.73% de valores ausentes(Em 4 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
 | Nota do Consumidor | 591305 | 49.75 |
 | Tempo Resposta | 24924 | 2.10 |
 | Sexo | 89 | 0.01 |
+| Avaliação Reclamação | 3 | 0.00 |
 
 **Etapas:**
 
-1. Imputação dos valores ausentes
+1. Imputação/Remoção dos valores ausentes
 
     1. Coluna 'Nota do Consumidor' -> Será imputado valores utilizando o método de preenchimento progressivo (forward fill) para os valores NaN.
     2. Coluna 'Tempo Resposta' -> será imputado o valor 0(Zero) para os valores NaN - Pois são reclamações que não foram respondidas.
     3. Coluna 'Sexo' -> será imputado o valor 'O'(Outros) para os valores NaN.
+    4. Coluna 'Avaliação Reclamação' -> Os dados ausentes seram removidos.
 
 2. linhas Duplicadas
 
@@ -53,6 +55,10 @@
 - [x] Coleta dos dados
 - [x] Limpeza e Transformação dos dados
 - [ ] Deploy Streamlit
+
+## ![Sugestão](https://cdn-icons-png.flaticon.com/24/2355/2355095.png) Se tiver alguma sugestão/feedback
+
+[Sugestão](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/issues/new)
 
 ## ![CI](https://cdn-icons-png.flaticon.com/24/6577/6577286.png) CI
 
