@@ -39,7 +39,7 @@
 
     1. Foram eliminadas do Dataframe as linhas duplicadas.
 
-- Após as transformações realizadas o DataSet ficou com 1184928 registros e 19 colunas.
+- Após as transformações realizadas o DataSet ficou com 2041318 registros e 19 colunas.
 
 ## ![Perguntas a serem respondidas](https://cdn-icons-png.flaticon.com/24/4501/4501315.png) Perguntas a serem respondidas
 
@@ -58,7 +58,7 @@
 
 ## ![Sugestão](https://cdn-icons-png.flaticon.com/24/2355/2355095.png) Se tiver alguma sugestão/feedback
 
-[Sugestão](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/issues/new)
+[Sugestão](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/issues/new/choose)
 
 ## ![CI](https://cdn-icons-png.flaticon.com/24/6577/6577286.png) CI
 
