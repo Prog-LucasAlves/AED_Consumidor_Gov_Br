@@ -63,7 +63,7 @@
 ## ![CI](https://cdn-icons-png.flaticon.com/24/6577/6577286.png) CI
 
 [![Linter](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Linter.yml/badge.svg)](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Linter.yml)
-[![Linter](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Linter.yml/badge.svg)](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Linter.yml)
+[![Security](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Security.yml/badge.svg)](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Security.yml)
 [![Data Clear](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Data_Clear.yml/badge.svg)](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/actions/workflows/Data_Clear.yml)
 
 ## ![P](https://cdn-icons-png.flaticon.com/24/8422/8422251.png) Pacotes Python utilizados
