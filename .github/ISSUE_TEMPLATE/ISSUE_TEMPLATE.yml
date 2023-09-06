@@ -21,6 +21,6 @@ body:
         - 🥇Ótimo
         - 🥈Bom
         - 🥉Regular
-        - 🏅Rium  
+        - 🏅Ruim  
     validations:
       required: true

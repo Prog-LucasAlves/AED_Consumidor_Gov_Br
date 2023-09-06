@@ -56,7 +56,7 @@
 - [x] Limpeza e Transformação dos dados
 - [ ] Deploy Streamlit
 
-## ![Sugestão](https://cdn-icons-png.flaticon.com/24/2355/2355095.png) Se tiver alguma sugestão/feedback
+## ![Sugestão](https://cdn-icons-png.flaticon.com/24/2355/2355095.png) Sugestão/Feedback
 
 [Sugestão](https://github.com/Prog-LucasAlves/AED_Consumidor_Gov_Br/issues/new/choose)
 
