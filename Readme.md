@@ -17,14 +17,14 @@
 **Considerações:**
 
 - Após a união do arquivos CSVs, o DataFrame ficou com 2046325 registros e 19 colunas.
-- Foi verificado que o DataFrame havia 2.73% de valores ausentes(Em 4 colunas do DataFrame).
+- Foi verificado que o DataFrame havia 2.75% de valores ausentes(Em 4 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 591305 | 49.75 |
-| Tempo Resposta | 24924 | 2.10 |
-| Sexo | 89 | 0.01 |
-| Avaliação Reclamação | 3 | 0.00 |
+| Nota do Consumidor | 1163858 | 50.24 |
+| Tempo Resposta | 47048 | 2.03 |
+| Sexo | 167 | 0.01 |
+| Avaliação Reclamação | 4 | 0.00 |
 
 **Etapas:**
 
@@ -37,9 +37,9 @@
 
 2. linhas Duplicadas
 
-    1. Foram eliminadas do Dataframe as linhas duplicadas.
+    1. Foram eliminadas do Dataframe as linhas duplicadas(6415).
 
-- Após as transformações realizadas o DataSet ficou com 2041318 registros e 19 colunas.
+- Após as transformações realizadas o DataSet ficou com 2310185 registros e 19 colunas.
 
 ## ![Perguntas a serem respondidas](https://cdn-icons-png.flaticon.com/24/4501/4501315.png) Perguntas a serem respondidas
 
