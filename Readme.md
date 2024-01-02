@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados ate o mês 07/2023 - Atualizado dia 29/08/2023
+- Dados ate o mês 11/2023 - Atualizado dia 02/01/2024
 
 ## 💬 Sobre o Serviço
 
@@ -17,13 +17,13 @@
 **Considerações:**
 
 - Após a união do arquivos CSVs, o DataFrame ficou com 2046325 registros e 19 colunas.
-- Foi verificado que o DataFrame havia 2.75% de valores ausentes(Em 4 colunas do DataFrame).
+- Foi verificado que o DataFrame havia 2.83% de valores ausentes(Em 4 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 1163858 | 50.24 |
-| Tempo Resposta | 47048 | 2.03 |
-| Sexo | 167 | 0.01 |
+| Nota do Consumidor | 1324624 | 51.67 |
+| Tempo Resposta | 52676 | 2.05 |
+| Sexo | 178 | 0.01 |
 | Avaliação Reclamação | 4 | 0.00 |
 
 **Etapas:**
@@ -37,7 +37,7 @@
 
 2. linhas Duplicadas
 
-    1. Foram eliminadas do Dataframe as linhas duplicadas(6415).
+    1. Foram eliminadas do Dataframe as linhas duplicadas(7065).
 
 - Após as transformações realizadas o DataSet ficou com 2310185 registros e 19 colunas.
 
