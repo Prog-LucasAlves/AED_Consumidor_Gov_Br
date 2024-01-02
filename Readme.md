@@ -39,7 +39,7 @@
 
     1. Foram eliminadas do Dataframe as linhas duplicadas(7065).
 
-- Após as transformações realizadas o DataSet ficou com 2310185 registros e 19 colunas.
+- Após as transformações realizadas o DataSet ficou com 2556608 registros e 19 colunas.
 
 ## ![Perguntas a serem respondidas](https://cdn-icons-png.flaticon.com/24/4501/4501315.png) Perguntas a serem respondidas
 
