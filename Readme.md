@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados ate o mês 11/2023 - Atualizado dia 02/01/2024
+- Dados ate o mês 02/2024 - Atualizado dia 14/03/2024
 
 ## 💬 Sobre o Serviço
 
@@ -16,15 +16,15 @@
 
 **Considerações:**
 
-- Após a união do arquivos CSVs, o DataFrame ficou com 2046325 registros e 19 colunas.
-- Foi verificado que o DataFrame havia 2.83% de valores ausentes(Em 4 colunas do DataFrame).
+- Após a união do arquivos CSVs, o DataFrame ficou com 2903004 registros e 19 colunas.
+- Foi verificado que o DataFrame havia 2.90% de valores ausentes(Em 4 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 1324624 | 51.67 |
-| Tempo Resposta | 52676 | 2.05 |
-| Sexo | 178 | 0.01 |
-| Avaliação Reclamação | 4 | 0.00 |
+| Nota do Consumidor | 1538396 | 52.88 |
+| Tempo Resposta | 61293 | 2.11 |
+| Sexo | 187 | 0.01 |
+| Avaliação Reclamação | 5 | 0.00 |
 
 **Etapas:**
 
