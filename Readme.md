@@ -69,3 +69,4 @@
 ## ![P](https://cdn-icons-png.flaticon.com/24/8422/8422251.png) Pacotes Python utilizados
 
 [![Pandas](https://badge.fury.io/py/pandas.svg)](https://badge.fury.io/py/pandas)
+[![Pandas](https://badge.fury.io/py/pandas.svg)](https://badge.fury.io/py/pandas)
