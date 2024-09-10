@@ -43,3 +43,8 @@ def PypiTitle():
 > 🔍 Dashboard dos Dados das Reclamções Consumidor Gov.br </p>
 """
     st.markdown(TITLE, unsafe_allow_html=True)
+
+
+if __name__ == "__main__":
+    PypiConfigPage()
+    PypiTitle()
