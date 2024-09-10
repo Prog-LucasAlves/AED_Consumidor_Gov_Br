@@ -15,7 +15,7 @@ def PypiConfigPage():
     """
     Função para configurar a página.
     """
-    img = Image.open("./image/download.png")
+    img = Image.open("./Image/download.png")
 
     st.set_page_config(
         page_title="Em Construção",
