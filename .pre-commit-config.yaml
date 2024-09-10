@@ -15,8 +15,6 @@ repos:
     -   id: ruff-format
         types_or: [ python ]
 -   repo: https://github.com/PyCQA/bandit
-    rev: 1.7.7
+    rev: '1.7.9'
     hooks:
-      - id: bandit
-        args: ["-c", "pyproject.toml", "-r", "."]
-        additional_dependencies: ["bandit[toml]"]
+    - id: bandit
