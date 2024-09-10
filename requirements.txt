@@ -20,7 +20,7 @@ matplotlib-inline==0.1.6
 nest-asyncio==1.5.6
 numpy==1.23.4
 packaging==21.3
-pandas==1.5.1
+pandas==1.5.3
 parso==0.8.3
 pickleshare==0.7.5
 Pillow==9.3.0
