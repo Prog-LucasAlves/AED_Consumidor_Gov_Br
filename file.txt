@@ -26,8 +26,8 @@ jobs:
       - name: Executa Notebook
         run: |
           jupyter execute ETL/data_etl.ipynb
-        shell: bash 
-          
+        shell: bash
+
       - name: commit updated notebook
         uses: EndBug/add-and-commit@v9
         with:
@@ -57,8 +57,8 @@ jobs:
       - name: Executa Notebook
         run: |
           jupyter execute Analysis/consumidor.ipynb
-        shell: bash 
-          
+        shell: bash
+
       - name: commit updated notebook
         uses: EndBug/add-and-commit@v9
         with:
