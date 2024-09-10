@@ -13,11 +13,13 @@ seaborn = "^0.13.2"
 matplotlib = "^3.9.2"
 fastparquet = "^2024.5.0"
 jinja2 = "^3.1.4"
+streamlit = "^1.38.0"
 
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.21.1"
 pre-commit = "^3.8.0"
+taskipy = "^1.13.0"
 
 [tool.bandit]
 exclude_dirs = [
@@ -25,6 +27,9 @@ exclude_dirs = [
     ".git",
     "__pycache__",
 ]
+
+[tool.taskipy.tasks]
+run = "streamlit run app.py"
 
 [build-system]
 requires = ["poetry-core"]
