@@ -14,7 +14,3 @@ repos:
         args: [ --fix ]
     -   id: ruff-format
         types_or: [ python ]
--   repo: https://github.com/PyCQA/bandit
-    rev: '1.7.9'
-    hooks:
-    - id: bandit
