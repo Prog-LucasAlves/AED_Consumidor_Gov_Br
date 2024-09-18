@@ -129,3 +129,5 @@ dmypy.json
 # Pasta
 Data_for_csv
 *csv
+*db
+SILVER_data.parquet
