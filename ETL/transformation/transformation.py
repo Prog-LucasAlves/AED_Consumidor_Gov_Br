@@ -35,7 +35,7 @@ def transformdata():
     data["Sexo"] = data["Sexo"].fillna("O")
 
     # Eliminando valores ausentes na coluna 'Avaliação Reclamação'
-    data.dropna(subset=["Avaliação Reclamação"], inplace=True)
+    # data.dropna(subset=["Avaliação Reclamação"], inplace=True)
 
     # Elimina/apaga as linhas duplicadas
     data.drop_duplicates(inplace=True)
