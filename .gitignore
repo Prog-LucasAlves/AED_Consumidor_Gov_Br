@@ -130,4 +130,4 @@ dmypy.json
 Data_for_csv
 *csv
 *db
-SILVER_data.parquet
+*SILVER_data.parquet
