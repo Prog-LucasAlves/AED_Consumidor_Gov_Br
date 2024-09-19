@@ -22,12 +22,6 @@ ipykernel = "^6.21.1"
 pre-commit = "^3.8.0"
 taskipy = "^1.13.0"
 
-[tool.bandit]
-exclude_dirs = [
-    ".venv",
-    ".git",
-    "__pycache__",
-]
 
 [tool.taskipy.tasks]
 run = "streamlit run app.py"
