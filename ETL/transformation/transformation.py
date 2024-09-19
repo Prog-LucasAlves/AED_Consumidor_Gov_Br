@@ -35,7 +35,7 @@ def transformdata():
     data["Sexo"] = data["Sexo"].fillna("O")
 
     # Eliminando valores ausentes na coluna 'Avaliação Reclamação'
-    # data.dropna(subset=["Avaliação Reclamação"], inplace=True)
+    data.dropna(subset=["Avaliação Reclamação"], inplace=True)
 
     # Elimina/apaga as linhas duplicadas
     data.drop_duplicates(inplace=True)
@@ -50,7 +50,20 @@ def transformdata():
     data["Mes Finalização"] = data["Data Finalização"].dt.month
 
     # Criando a variável Mes Nome(Com o nome do mês)
-    data["Mes Nome Finalização"] = data["Data Finalização"].dt.month_name()
+    data["Mes Nome Finalização"] = "NaN"
+
+    data.loc[data["Mes Finalização"] == 1, "Mes Nome Finalização"] = "Janeiro"
+    data.loc[data["Mes Finalização"] == 2, "Mes Nome Finalização"] = "Fevereiro"
+    data.loc[data["Mes Finalização"] == 3, "Mes Nome Finalização"] = "Março"
+    data.loc[data["Mes Finalização"] == 4, "Mes Nome Finalização"] = "Abril"
+    data.loc[data["Mes Finalização"] == 5, "Mes Nome Finalização"] = "Maio"
+    data.loc[data["Mes Finalização"] == 6, "Mes Nome Finalização"] = "Junho"
+    data.loc[data["Mes Finalização"] == 7, "Mes Nome Finalização"] = "Julho"
+    data.loc[data["Mes Finalização"] == 8, "Mes Nome Finalização"] = "Agosto"
+    data.loc[data["Mes Finalização"] == 9, "Mes Nome Finalização"] = "Setembro"
+    data.loc[data["Mes Finalização"] == 10, "Mes Nome Finalização"] = "Outubro"
+    data.loc[data["Mes Finalização"] == 11, "Mes Nome Finalização"] = "Novembro"
+    data.loc[data["Mes Finalização"] == 12, "Mes Nome Finalização"] = "Dezembro"
 
     # Criando a variável Dia da Semana(Número do Dia da Semana)
     data["Dia Semana Finalização"] = data["Data Finalização"].dt.weekday
@@ -58,25 +71,25 @@ def transformdata():
     # Criando a variável Dia Semana Nome Finalização(Com o nome do dia da semana)
     data["Dia Semana Nome Finalização"] = "NaN"
 
-    data.loc[data["Dia Semana Finalização"] == 0, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 0, "Dia Semana Nome Finalização"] = (
         "Segunda-Feira"
     )
-    data.loc[data["Dia Semana Finalização"] == 1, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 1, "Dia Semana Nome Finalização"] = (
         "Terça-Feira"
     )
-    data.loc[data["Dia Semana Finalização"] == 2, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 2, "Dia Semana Nome Finalização"] = (
         "Quarta-Feira"
     )
-    data.loc[data["Dia Semana Finalização"] == 3, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 3, "Dia Semana Nome Finalização"] = (
         "Quinta-Feira"
     )
-    data.loc[data["Dia Semana Finalização"] == 4, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 4, "Dia Semana Nome Finalização"] = (
         "Sexta-Feira"
     )
-    data.loc[data["Dia Semana Finalização"] == 5, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 5, "Dia Semana Nome Finalização"] = (
         "Sábado"
     )
-    data.loc[data["Dia Semana Finalização"] == 6, "Nome Dia Semana Finalização"] = (
+    data.loc[data["Dia Semana Finalização"] == 6, "Dia Semana Nome Finalização"] = (
         "Domingo"
     )
 
@@ -103,7 +116,7 @@ def transformdata():
             "Mes Finalização": "Mes_Finalizacao",
             "Mes Nome Finalização": "Mes_Nome_Finalizacao",
             "Dia Semana Finalização": "Dia_Semana_Finalizacao",
-            "Nome Dia Semana Finalização": "Nome_Dia_Semana_Finalizacao",
+            "Dia Semana Nome Finalização": "Dia_Semana_Nome_Finalizacao",
         },
         inplace=True,
     )
