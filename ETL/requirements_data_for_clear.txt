@@ -1,5 +1,0 @@
-jupyterlab==3.4.5
-nbclient==0.6.7
-numpy==1.22.3
-pandas==1.4.2
-pyarrow==10.0.0
