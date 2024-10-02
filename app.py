@@ -192,8 +192,6 @@ def PypGrafics(ano, nomefantasia):
     fig3.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col3.plotly_chart(fig3, use_container_width=True)
 
-    st.divider()
-
 
 if __name__ == "__main__":
     PypiConfigPage()
