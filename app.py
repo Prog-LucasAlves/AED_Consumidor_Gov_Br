@@ -6,6 +6,7 @@ Dashboard Dados De Reclamações Consumidor Gov.br
 import streamlit as st
 from PIL import Image
 import duckdb
+import plotly.express as px
 
 # Diretório dos Dados
 # Caminho do arquivo parquet com os dados
@@ -119,8 +120,84 @@ def PypiEsttAnual():
     return ANO, NOMEFANTASIA
 
 
+def PypGrafics(ano, nomefantasia):
+    """
+    Função para exibir os gráficos.
+    """
+
+    st.subheader("Gráficos")
+
+    col1, col2, col3 = st.columns((2, 2, 2))
+
+    DATA = duckdb.query(
+        f"""SELECT Mes_Finalizacao AS M, Mes_Nome_Finalizacao AS Mês, COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        WHERE Ano = {ano}
+        AND Nome_Fantasia = '{nomefantasia}'
+        GROUP BY Mes_Finalizacao, Mes_Nome_Finalizacao
+        ORDER BY Mes_Finalizacao DESC
+        """
+    ).to_df()
+
+    fig = px.bar(
+        DATA,
+        x="TOTAL",
+        y="Mês",
+        text_auto=True,
+        title="Qtd. Reclamações por Mês",
+        height=400,
+        width=400,
+    )
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col1.plotly_chart(fig, use_container_width=True)
+
+    # -----
+
+    DATA1 = duckdb.query(
+        f"""SELECT Regiao AS R, COUNT(*) AS TOTAL,
+        CASE Regiao
+            WHEN 'S ' THEN 'Região Sul'
+            WHEN 'N ' THEN 'Região Norte'
+            WHEN 'NE' THEN 'Região Nordeste'
+            WHEN 'SE' THEN 'Região Sudeste'
+            WHEN 'CO' THEN 'Região Centro-Oeste'
+        END AS 'Região'
+        FROM '{PATH_PARQUET}'
+        WHERE Ano = {ano}
+        AND Nome_Fantasia = '{nomefantasia}'
+        GROUP BY Regiao
+        """
+    ).to_df()
+
+    fig2 = px.pie(
+        DATA1, values="TOTAL", names="Região", title="Qtd. Reclamações por Região"
+    )
+    col2.plotly_chart(fig2, use_container_width=True)
+
+    # -----
+
+    DATA2 = duckdb.query(
+        f"""SELECT UF, COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        WHERE Ano = {ano}
+        AND Nome_Fantasia = '{nomefantasia}'
+        GROUP BY UF
+        ORDER BY TOTAL ASC
+        """
+    ).to_df()
+
+    fig3 = px.bar(
+        DATA2, x="TOTAL", y="UF", text_auto=True, title="Qtd. Reclamações por Estado"
+    )
+    fig3.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col3.plotly_chart(fig3, use_container_width=True)
+
+    st.divider()
+
+
 if __name__ == "__main__":
     PypiConfigPage()
     PypiTitle()
     PypiAttData()
-    PypiEsttAnual()
+    ano, nomefantasia = PypiEsttAnual()
+    PypGrafics(ano, nomefantasia)
