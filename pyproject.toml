@@ -20,7 +20,7 @@ plotly = "^5.24.1"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.21.1"
-pre-commit = "^3.8.0"
+pre-commit = "^4.0.0"
 taskipy = "^1.13.0"
 
 
