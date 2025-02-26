@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados de 01/2021 ate o mês 06/2024 - Atualizado dia 25/07/2024
+- Dados de 01/2021 ate o mês 01/2025 - Atualizado dia 26/02/2025
 
 ## 💬 Sobre o Serviço
 
@@ -16,14 +16,14 @@
 
 **Considerações:**
 
-- Após a união do arquivos CSVs, o DataFrame ficou com 44684233 registros e 19 colunas.
-- Foi verificado que o DataFrame havia 2.8% de valores ausentes(Em 4 colunas do DataFrame).
+- Após a união do arquivos CSVs, o DataFrame ficou com 5137883 registros e 19 colunas.
+- Foi verificado que o DataFrame havia 2.71% de valores ausentes(Em 4 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 2410619 | 51.46 |
-| Tempo Resposta | 84515 | 1.80 |
-| Sexo | 297 | 0.01 |
+| Nota do Consumidor | 2548238 | 49.60 |
+| Tempo Resposta | 93576 | 1.82 |
+| Sexo | 318 | 0.01 |
 | Avaliação Reclamação | 6 | 0.00 |
 
 **Etapas:**
@@ -37,9 +37,9 @@
 
 2. linhas Duplicadas
 
-    1. Foram eliminadas do Dataframe as linhas duplicadas(17336).
+    1. Foram eliminadas do Dataframe as linhas duplicadas(19109).
 
-- Após as transformações realizadas o DataSet ficou com 4666868 registros e 19 colunas.
+- Após as transformações realizadas o DataSet ficou com 5118745 registros e 19 colunas.
 
 ## ![Perguntas a serem respondidas](https://cdn-icons-png.flaticon.com/24/4501/4501315.png) Perguntas a serem respondidas
 
