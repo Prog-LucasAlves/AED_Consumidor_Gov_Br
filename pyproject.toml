@@ -1,32 +1,23 @@
-[tool.poetry]
+[project]
 name = "aed-consumidor-gov-br"
 version = "0.1.0"
 description = ""
-authors = ["Prog-LucasAlves <lucasalves_taz@hotmail.com>"]
+authors = [
+    {name = "Lucas Alves",email = "lucasalves_taz@hotmail.com"}
+]
 readme = "README.md"
-packages = [{include = "aed_consumidor_gov_br"}]
+requires-python = ">=3.11"
+dependencies = [
+    "pandas (>=2.2.3,<3.0.0)",
+    "fastparquet (>=2024.11.0,<2025.0.0)",
+    "matplotlib (>=3.10.1,<4.0.0)",
+    "seaborn (>=0.13.2,<0.14.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-pandas = "^2.2.2"
-seaborn = "^0.13.2"
-matplotlib = "^3.9.2"
-fastparquet = "^2024.5.0"
-jinja2 = "^3.1.4"
-streamlit = "^1.38.0"
-duckdb = "^1.1.0"
-plotly = "^5.24.1"
-
-
-[tool.poetry.group.dev.dependencies]
-ipykernel = "^6.21.1"
-pre-commit = "^3.8.0"
-taskipy = "^1.13.0"
-
-
-[tool.taskipy.tasks]
-run = "streamlit run app.py"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
