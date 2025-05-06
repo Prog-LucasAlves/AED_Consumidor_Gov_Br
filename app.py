@@ -10,7 +10,7 @@ import plotly.express as px
 # Diretório dos Dados
 # Caminho do arquivo parquet com os dados
 # ==== VARIÁVEIS ====
-PATH_PARQUET = "./Data/Data_for_clear/GOLD_data_transformed.parquet"
+PATH_PARQUET = "./Data/Data_for_clear/GOLDEN_dfGov.parquet"
 
 
 st.set_page_config(
