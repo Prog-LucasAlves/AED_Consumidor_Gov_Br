@@ -60,6 +60,17 @@ def PypiEsttGeral():
 
     st.subheader("Estatísticas Gerais")
 
+    col3, col4 = st.columns((2, 2))
+
+    DATAANO = duckdb.query(
+        f"""SELECT DISTINCT(Ano)
+        FROM '{PATH_PARQUET}'
+        ORDER BY Ano ASC
+        """
+    ).to_df()
+
+    ANO = col3.selectbox("Selecione o Ano", DATAANO)
+
     DATANOMEFANTASIA = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
         FROM '{PATH_PARQUET}'
@@ -67,14 +78,13 @@ def PypiEsttGeral():
         """
     ).to_df()
 
-    # Colunas do Selectbox
-    col3 = st.columns((2))
-
-    NOMEFANTASIA = col3.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+    NOMEFANTASIA = col4.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
 
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
+        WHERE Ano = {ANO}
+        AND Nome_Fantasia = '{NOMEFANTASIA}'
         """
     ).to_df()
 
@@ -85,7 +95,7 @@ def PypiEsttGeral():
 
     st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
 
-    return NOMEFANTASIA
+    return ANO, NOMEFANTASIA
 
 
 def PypiEsttAnual():
@@ -247,7 +257,7 @@ def main():
             PypGraficsA(ano, nomefantasia)
 
         with subaba2:
-            nomefantasia = PypiEsttGeral()
+            ano, nomefantasia = PypiEsttGeral()
 
 
 if __name__ == "__main__":
