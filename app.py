@@ -60,52 +60,6 @@ def PypiEsttGeral():
 
     st.subheader("Estatísticas Gerais")
 
-    col3, col4 = st.columns((2, 2))
-
-    DATAANO = duckdb.query(
-        f"""SELECT DISTINCT(Ano)
-        FROM '{PATH_PARQUET}'
-        ORDER BY Ano ASC
-        """
-    ).to_df()
-
-    ANO = col3.selectbox("Selecione o Ano", DATAANO)
-
-    DATANOMEFANTASIA = duckdb.query(
-        f"""SELECT DISTINCT(Nome_Fantasia)
-        FROM '{PATH_PARQUET}'
-        ORDER BY Nome_Fantasia ASC
-        """
-    ).to_df()
-
-    NOMEFANTASIA = col4.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
-
-    TOTALRECLAMACOES = duckdb.query(
-        f"""SELECT COUNT(*) AS TOTAL
-        FROM '{PATH_PARQUET}'
-        WHERE Ano = {ANO}
-        AND Nome_Fantasia = '{NOMEFANTASIA}'
-        """
-    ).to_df()
-
-    TOTALRECLAMACOES = f"""
-    <p style="color:Black; font-size: 16px; font-weight: bolder;"
-    > Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]} </p>
-    """
-
-    st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
-
-    return ANO, NOMEFANTASIA
-
-
-def PypiEsttAnual():
-    """
-    Função para exibir os dados Estatísticos Anuais.
-    """
-
-    st.subheader("Estatísticas Anuais")
-
-    # Colunas do Selectbox
     col1, col2 = st.columns((2, 2))
 
     DATAANO = duckdb.query(
@@ -144,6 +98,52 @@ def PypiEsttAnual():
     return ANO, NOMEFANTASIA
 
 
+def PypiEsttAnual():
+    """
+    Função para exibir os dados Estatísticos Anuais.
+    """
+
+    st.subheader("Estatísticas Anuais")
+
+    # Colunas do Selectbox
+    col10, col11 = st.columns((2, 2))
+
+    DATAANO = duckdb.query(
+        f"""SELECT DISTINCT(Ano)
+        FROM '{PATH_PARQUET}'
+        ORDER BY Ano ASC
+        """
+    ).to_df()
+
+    ANO = col10.selectbox("Selecione o Ano", DATAANO)
+
+    DATANOMEFANTASIA = duckdb.query(
+        f"""SELECT DISTINCT(Nome_Fantasia)
+        FROM '{PATH_PARQUET}'
+        ORDER BY Nome_Fantasia ASC
+        """
+    ).to_df()
+
+    NOMEFANTASIA = col11.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+
+    TOTALRECLAMACOES = duckdb.query(
+        f"""SELECT COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        WHERE Ano = {ANO}
+        AND Nome_Fantasia = '{NOMEFANTASIA}'
+        """
+    ).to_df()
+
+    TOTALRECLAMACOES = f"""
+    <p style="color:Black; font-size: 16px; font-weight: bolder;"
+    > Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]} </p>
+    """
+
+    st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
+
+    return ANO, NOMEFANTASIA
+
+
 def PypGraficsA(ano, nomefantasia):
     """
     Função para exibir os gráficos.
@@ -151,7 +151,7 @@ def PypGraficsA(ano, nomefantasia):
 
     st.subheader("Gráficos")
 
-    col1, col2, col3 = st.columns((2, 2, 2))
+    col20, col21, col22 = st.columns((2, 2, 2))
 
     DATA = duckdb.query(
         f"""SELECT Mes_Finalizacao AS M, Mes_Nome_Finalizacao AS Mês, COUNT(*) AS TOTAL
@@ -173,7 +173,7 @@ def PypGraficsA(ano, nomefantasia):
         width=400,
     )
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col1.plotly_chart(fig, use_container_width=True)
+    col20.plotly_chart(fig, use_container_width=True)
 
     # -----
 
@@ -196,7 +196,7 @@ def PypGraficsA(ano, nomefantasia):
     fig2 = px.pie(
         DATA1, values="TOTAL", names="Região", title="Qtd. Reclamações por Região"
     )
-    col2.plotly_chart(fig2, use_container_width=True)
+    col21.plotly_chart(fig2, use_container_width=True)
 
     # -----
 
@@ -214,7 +214,7 @@ def PypGraficsA(ano, nomefantasia):
         DATA2, x="TOTAL", y="UF", text_auto=True, title="Qtd. Reclamações por Estado"
     )
     fig3.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col3.plotly_chart(fig3, use_container_width=True)
+    col22.plotly_chart(fig3, use_container_width=True)
 
     # -----
 
@@ -236,7 +236,7 @@ def PypGraficsA(ano, nomefantasia):
         title="Qtd. Reclamações por Assunto",
     )
     fig4.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col1.plotly_chart(fig4, use_container_width=True)
+    col20.plotly_chart(fig4, use_container_width=True)
 
 
 def main():
