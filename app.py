@@ -53,6 +53,29 @@ def PypiAttData():
     return DATAATTMES, DATAATTANO
 
 
+def PypiEsttGeral():
+    """
+    Função para exibir os dados Estatísticos Gerais.
+    """
+
+    st.subheader("Estatísticas Gerais")
+
+    TOTALRECLAMACOES = duckdb.query(
+        f"""SELECT COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        """
+    ).to_df()
+
+    TOTALRECLAMACOES = f"""
+    <p style="color:Black; font-size: 16px; font-weight: bolder;"
+    > Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]} </p>
+    """
+
+    st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
+
+    return TOTALRECLAMACOES
+
+
 def PypiEsttAnual():
     """
     Função para exibir os dados Estatísticos Anuais.
@@ -206,10 +229,13 @@ def main():
         st.header("Dados por Empresa")
         PypiAttData()
         subaba1, subaba2 = st.tabs(["📊 Anuais", "📈 Gerais"])
+
         with subaba1:
-            st.subheader("Anuais")
             ano, nomefantasia = PypiEsttAnual()
             PypGraficsA(ano, nomefantasia)
+
+        with subaba2:
+            PypiEsttGeral()
 
 
 if __name__ == "__main__":
