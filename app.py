@@ -171,6 +171,28 @@ def PypGrafics(ano, nomefantasia):
     fig3.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col3.plotly_chart(fig3, use_container_width=True)
 
+    # -----
+
+    DATA3 = duckdb.query(
+        f"""SELECT Assunto, COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        WHERE Ano = {ano}
+        AND Nome_Fantasia = '{nomefantasia}'
+        GROUP BY Assunto
+        ORDER BY TOTAL DESC
+        """
+    ).to_df()
+
+    fig4 = px.bar(
+        DATA3,
+        x="TOTAL",
+        y="Assunto",
+        text_auto=True,
+        title="Qtd. Reclamações por Assunto",
+    )
+    fig4.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col1.plotly_chart(fig4, use_container_width=True)
+
 
 def main():
     # Cria as abas
