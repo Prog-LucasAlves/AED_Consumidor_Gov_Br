@@ -60,6 +60,18 @@ def PypiEsttGeral():
 
     st.subheader("Estatísticas Gerais")
 
+    DATANOMEFANTASIA = duckdb.query(
+        f"""SELECT DISTINCT(Nome_Fantasia)
+        FROM '{PATH_PARQUET}'
+        ORDER BY Nome_Fantasia ASC
+        """
+    ).to_df()
+
+    # Colunas do Selectbox
+    col1, col2 = st.columns((2, 2))
+
+    NOMEFANTASIA = col1.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
@@ -73,7 +85,7 @@ def PypiEsttGeral():
 
     st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
 
-    return TOTALRECLAMACOES
+    return NOMEFANTASIA
 
 
 def PypiEsttAnual():
@@ -236,6 +248,7 @@ def main():
 
         with subaba2:
             PypiEsttGeral()
+            nomefantasia = PypiEsttGeral()
 
 
 if __name__ == "__main__":
