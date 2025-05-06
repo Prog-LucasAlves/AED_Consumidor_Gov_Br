@@ -68,9 +68,9 @@ def PypiEsttGeral():
     ).to_df()
 
     # Colunas do Selectbox
-    col1, col2 = st.columns((2, 2))
+    col6 = st.columns((2))
 
-    NOMEFANTASIA = col1.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+    NOMEFANTASIA = col6.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
 
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
