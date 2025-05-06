@@ -58,14 +58,13 @@ def PypiEsttAnual():
     Função para exibir os dados Estatísticos Anuais.
     """
 
-    st.subheader("Estatísticas Anuais")
+    st.subheader("Estatísticas Gerais e Anuais")
 
     # Colunas do Selectbox
-    col1, col2, col3 = st.columns((2, 2, 2))
+    col1, col2, col3 = st.columns((1, 2, 2))
 
     if col1.checkbox("Dados Gerais"):
         col1.write("AAAAA")
-    col1.checkbox("Dados Gerais", value=True, disabled=True)
 
     DATAANO = duckdb.query(
         f"""SELECT DISTINCT(Ano)
