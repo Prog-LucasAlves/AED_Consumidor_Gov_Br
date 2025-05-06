@@ -63,7 +63,7 @@ def PypiEsttAnual():
     # Colunas do Selectbox
     col1, col2, col3 = st.columns((2, 2, 2))
 
-    if col1.checkbox("Dados Gerais", value=True, disabled=True):
+    if col1.checkbox("Dados Gerais"):
         col1.write("AAAAA")
     col1.checkbox("Dados Gerais", value=True, disabled=True)
 
