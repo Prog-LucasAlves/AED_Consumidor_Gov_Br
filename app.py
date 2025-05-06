@@ -58,13 +58,10 @@ def PypiEsttAnual():
     Função para exibir os dados Estatísticos Anuais.
     """
 
-    st.subheader("Estatísticas Gerais e Anuais")
+    st.subheader("Estatísticas Anuais")
 
     # Colunas do Selectbox
-    col1, col2, col3 = st.columns((1, 2, 2))
-
-    if col1.checkbox("Dados Gerais"):
-        col1.write("AAAAA")
+    col1, col2 = st.columns((2, 2))
 
     DATAANO = duckdb.query(
         f"""SELECT DISTINCT(Ano)
@@ -73,7 +70,7 @@ def PypiEsttAnual():
         """
     ).to_df()
 
-    ANO = col2.selectbox("Selecione o Ano", DATAANO)
+    ANO = col1.selectbox("Selecione o Ano", DATAANO)
 
     DATANOMEFANTASIA = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
@@ -82,7 +79,7 @@ def PypiEsttAnual():
         """
     ).to_df()
 
-    NOMEFANTASIA = col3.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+    NOMEFANTASIA = col2.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
 
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
@@ -208,8 +205,11 @@ def main():
     with aba2:
         st.header("Dados por Empresa")
         PypiAttData()
-        ano, nomefantasia = PypiEsttAnual()
-        PypGraficsA(ano, nomefantasia)
+        subaba1, subaba2 = st.tabs(["📊 Anuais", "📈 Gerais"])
+        with subaba1:
+            st.subheader("Anuais")
+            ano, nomefantasia = PypiEsttAnual()
+            PypGraficsA(ano, nomefantasia)
 
 
 if __name__ == "__main__":
