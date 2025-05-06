@@ -4,33 +4,29 @@ Dashboard Dados De Reclamações Consumidor Gov.br
 
 # Bibliotecas utilizadas
 import streamlit as st
-from PIL import Image
 import duckdb
 import plotly.express as px
 
 # Diretório dos Dados
 # Caminho do arquivo parquet com os dados
+# ==== VARIÁVEIS ====
 PATH_PARQUET = "./Data/Data_for_clear/GOLD_data_transformed.parquet"
 
 
-def PypiConfigPage():
-    """
-    Função para configurar a página.
-    """
-
-    img = Image.open("./Image/page.png")
-
-    st.set_page_config(
-        page_title="Em Construção",
-        page_icon=img,
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+st.set_page_config(
+    page_title="Dashboard Reclamações",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        "Get Help": "https://www.extremelycoolapp.com/help",
+        "Report a bug": "https://www.extremelycoolapp.com/bug",
+        "About": "# Dashboard de Reclamações - Gov.br",
+    },
+)
 
 
-PypiConfigPage()
-
-
+# ==== FUNÇÕES ====
 def PypiAttData():
     """
     Função para exibir os dados de Atualização.
@@ -185,7 +181,6 @@ def main():
 
     with aba2:
         st.header("Dados por Empresa")
-        PypiConfigPage()
         PypiAttData()
         ano, nomefantasia = PypiEsttAnual()
         PypGrafics(ano, nomefantasia)
