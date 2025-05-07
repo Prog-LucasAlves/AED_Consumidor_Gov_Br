@@ -22,6 +22,8 @@ st.set_page_config(
     },
 )
 
+st.title("Dashboard Dados De Reclamações Consumidor Gov.br")
+
 
 # ==== FUNÇÕES ====
 def PypiAttData():
@@ -48,52 +50,52 @@ def PypiAttData():
 def PypiEsttGeral():
     st.subheader("Estatísticas Gerais")
 
-    DATANOMEFANTASIA = duckdb.query(
+    SELECTNOMEFANTASIAGERAL = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
         FROM '{PATH_PARQUET}'
         ORDER BY Nome_Fantasia ASC"""
     ).to_df()
 
-    NOMEFANTASIA = st.selectbox(
+    NOMEFANTASIAGERAL = st.selectbox(
         "Selecione a Empresa",
-        DATANOMEFANTASIA["Nome_Fantasia"].tolist(),
+        SELECTNOMEFANTASIAGERAL["Nome_Fantasia"].tolist(),
         key="geral_empresa",
     )
 
-    TOTALRECLAMACOES = duckdb.query(
+    TOTALRECLAMACOESGERAL = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
-        WHERE Nome_Fantasia = '{NOMEFANTASIA}'"""
+        WHERE Nome_Fantasia = '{NOMEFANTASIAGERAL}'"""
     ).to_df()
 
     st.markdown(
         f"""<p style="color:Black; font-size: 16px; font-weight: bolder;">
-        Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]}</p>""",
+        Total de Reclamações: {TOTALRECLAMACOESGERAL.iloc[0, 0]}</p>""",
         unsafe_allow_html=True,
     )
 
-    return NOMEFANTASIA
+    return NOMEFANTASIAGERAL
 
 
 def PypiEsttAnual():
     st.subheader("Estatísticas Anuais")
     col1, col2 = st.columns((2, 2))
 
-    DATAANO = duckdb.query(
+    SELECTANO = duckdb.query(
         f"""SELECT DISTINCT(Ano)
         FROM '{PATH_PARQUET}'
         ORDER BY Ano ASC"""
     ).to_df()
-    ANO = col1.selectbox("Selecione o Ano", DATAANO["Ano"].tolist(), key="anual_ano")
+    ANO = col1.selectbox("Selecione o Ano", SELECTANO["Ano"].tolist(), key="anual_ano")
 
-    DATANOMEFANTASIA = duckdb.query(
+    SELECTNOMEFANTASIAANUAL = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
         FROM '{PATH_PARQUET}'
         ORDER BY Nome_Fantasia ASC"""
     ).to_df()
-    NOMEFANTASIA = col2.selectbox(
+    NOMEFANTASIAANUAL = col2.selectbox(
         "Selecione a Empresa",
-        DATANOMEFANTASIA["Nome_Fantasia"].tolist(),
+        SELECTNOMEFANTASIAANUAL["Nome_Fantasia"].tolist(),
         key="anual_empresa",
     )
 
@@ -101,7 +103,7 @@ def PypiEsttAnual():
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
         WHERE Ano = {ANO}
-        AND Nome_Fantasia = '{NOMEFANTASIA}'"""
+        AND Nome_Fantasia = '{NOMEFANTASIAANUAL}'"""
     ).to_df()
 
     st.markdown(
@@ -110,7 +112,7 @@ def PypiEsttAnual():
         unsafe_allow_html=True,
     )
 
-    return ANO, NOMEFANTASIA
+    return ANO, NOMEFANTASIAANUAL
 
 
 def PypGraficsA(ano, nomefantasia):
