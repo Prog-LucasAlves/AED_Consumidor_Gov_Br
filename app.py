@@ -47,7 +47,20 @@ def PypiAttData():
     return DATAATTMES, DATAATTANO
 
 
-def PypiEsttGeral():
+def PypiEstGeral():
+    TOTALRECLAMACOESGERAL = duckdb.query(
+        f"""SELECT COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'"""
+    ).to_df()
+
+    st.markdown(
+        f"""<p style="color:Black; font-size: 16px; font-weight: bolder;">
+        Total de Reclamações: {TOTALRECLAMACOESGERAL.iloc[0, 0]}</p>""",
+        unsafe_allow_html=True,
+    )
+
+
+def PypiEstEmGeral():
     st.subheader("Estatísticas Gerais")
 
     SELECTNOMEFANTASIAGERAL = duckdb.query(
@@ -77,7 +90,7 @@ def PypiEsttGeral():
     return NOMEFANTASIAGERAL
 
 
-def PypiEsttAnual():
+def PypiEstEmAnual():
     st.subheader("Estatísticas Anuais")
     col1, col2 = st.columns((2, 2))
 
@@ -115,7 +128,7 @@ def PypiEsttAnual():
     return ANO, NOMEFANTASIAANUAL
 
 
-def PypGraficsA(ano, nomefantasia):
+def PypGraficsEmAnual(ano, nomefantasia):
     st.subheader("Gráficos")
     col1, col2, col3 = st.columns((2, 2, 2))
 
@@ -190,7 +203,7 @@ def PypGraficsA(ano, nomefantasia):
     col1.plotly_chart(fig4, use_container_width=True)
 
 
-def PypGraficsG(nomefantasia):
+def PypGraficsEmGeral(nomefantasia):
     st.subheader("Gráficos")
     col1, col2, col3 = st.columns((2, 2, 2))
 
@@ -219,6 +232,7 @@ def main():
     with aba1:
         st.header("Dados Gerais")
         PypiAttData()
+        PypiEstGeral()
 
     with aba2:
         st.header("Dados por Empresa")
@@ -226,11 +240,11 @@ def main():
         subaba1, subaba2 = st.tabs(["📊 Anuais", "📈 Gerais"])
 
         with subaba1:
-            ano, nomefantasia = PypiEsttAnual()
-            PypGraficsA(ano, nomefantasia)
+            ano, nomefantasia = PypiEstEmAnual()
+            PypGraficsEmAnual(ano, nomefantasia)
 
         with subaba2:
-            nomefantasia = PypiEsttGeral()
+            nomefantasia = PypiEstEmGeral()
 
 
 if __name__ == "__main__":
