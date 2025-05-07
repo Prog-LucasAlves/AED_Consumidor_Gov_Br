@@ -136,7 +136,7 @@ def PypGraficsA(ano, nomefantasia):
         height=400,
     )
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col1.plotly_chart(fig, use_container_width=True)
+    col1.plotly_chart(fig, use_container_width=True, key="mes_anual")
 
     DATA1 = duckdb.query(
         f"""SELECT Regiao AS R, COUNT(*) AS TOTAL,
@@ -188,6 +188,29 @@ def PypGraficsA(ano, nomefantasia):
     )
     fig4.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col1.plotly_chart(fig4, use_container_width=True)
+
+
+def PypGraficsG(nomefantasia):
+    st.subheader("Gráficos")
+    col1, col2, col3 = st.columns((2, 2, 2))
+
+    DATA = duckdb.query(
+        f"""SELECT Mes_Finalizacao AS M, Mes_Nome_Finalizacao AS Mês, COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        WHERE Nome_Fantasia = '{nomefantasia}'
+        GROUP BY Mes_Finalizacao, Mes_Nome_Finalizacao
+        ORDER BY Mes_Finalizacao DESC"""
+    ).to_df()
+    fig = px.bar(
+        DATA,
+        x="TOTAL",
+        y="Mês",
+        text_auto=True,
+        title="Qtd. Reclamações por Mês",
+        height=400,
+    )
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col1.plotly_chart(fig, use_container_width=True, key="mes_geral")
 
 
 def main():
