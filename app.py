@@ -53,9 +53,11 @@ def PypiEstGeral():
         FROM '{PATH_PARQUET}'"""
     ).to_df()
 
+    TOTALRECLAMACOESGERALFORMAT = "{:,.0f}".format(TOTALRECLAMACOESGERAL.iloc[0, 0])
+
     st.markdown(
         f"""<p style="color:Black; font-size: 16px; font-weight: bolder;">
-        Total de Reclamações: {TOTALRECLAMACOESGERAL.iloc[0, 0]}</p>""",
+        Total de Reclamações: {TOTALRECLAMACOESGERALFORMAT}</p>""",
         unsafe_allow_html=True,
     )
 
@@ -149,7 +151,7 @@ def PypGraficsEmAnual(ano, nomefantasia):
         height=400,
     )
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col1.plotly_chart(fig, use_container_width=True, key="mes_anual")
+    col1.plotly_chart(fig, use_container_width=True, key="mes_em_anual")
 
     DATA1 = duckdb.query(
         f"""SELECT Regiao AS R, COUNT(*) AS TOTAL,
@@ -223,7 +225,31 @@ def PypGraficsEmGeral(nomefantasia):
         height=400,
     )
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col1.plotly_chart(fig, use_container_width=True, key="mes_geral")
+    col1.plotly_chart(fig, use_container_width=True, key="mes_em_geral")
+
+
+def PypGraficsGeral():
+    st.subheader("Gráficos")
+    col1, col2, col3 = st.columns((2, 2, 2))
+
+    DATA = duckdb.query(
+        f"""SELECT Respondida AS R, COUNT(*) AS TOTAL,
+        CASE Respondida
+            WHEN 'Sim' THEN 'Reclamação Respondida'
+            WHEN 'Não' THEN 'Reclamação Não Respondida'
+        END AS Status
+        FROM '{PATH_PARQUET}'"""
+    ).to_df()
+    fig = px.bar(
+        DATA,
+        x="TOTAL",
+        y="Status",
+        text_auto=True,
+        title="Qtd. Reclamações por Mês",
+        height=400,
+    )
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col1.plotly_chart(fig, use_container_width=True, key="respondida")
 
 
 def main():
