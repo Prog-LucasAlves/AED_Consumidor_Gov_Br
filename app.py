@@ -8,10 +8,7 @@ import duckdb
 import plotly.express as px
 
 # Diretório dos Dados
-# Caminho do arquivo parquet com os dados
-# ==== VARIÁVEIS ====
 PATH_PARQUET = "./Data/Data_for_clear/GOLDEN_dfGov.parquet"
-
 
 st.set_page_config(
     page_title="Dashboard Reclamações",
@@ -28,10 +25,6 @@ st.set_page_config(
 
 # ==== FUNÇÕES ====
 def PypiAttData():
-    """
-    Função para exibir os dados de Atualização.
-    """
-
     DATA = duckdb.query(
         f"""SELECT Mes_Finalizacao, Mes_Nome_Finalizacao, Ano
         FROM '{PATH_PARQUET}'
@@ -43,114 +36,80 @@ def PypiAttData():
     DATAATTANO = DATA.iloc[0, 2]
 
     ATT = f"""
-    <p style="color:DimGrey; font-size: 14px; font-weight: bolder;"
-    > Atualização: {DATAATTMES} | {DATAATTANO} </p>
+    <p style="color:DimGrey; font-size: 14px; font-weight: bolder;">
+    Atualização: {DATAATTMES} | {DATAATTANO}</p>
     """
     st.markdown(ATT, unsafe_allow_html=True)
-
     st.divider()
 
     return DATAATTMES, DATAATTANO
 
 
 def PypiEsttGeral():
-    """
-    Função para exibir os dados Estatísticos Gerais.
-    """
-
     st.subheader("Estatísticas Gerais")
-
-    col3, col4 = st.columns((2, 2))
-
-    DATAANO = duckdb.query(
-        f"""SELECT DISTINCT(Ano)
-        FROM '{PATH_PARQUET}'
-        ORDER BY Ano ASC
-        """
-    ).to_df()
-
-    ANO = col3.selectbox("Selecione o Ano", DATAANO)
 
     DATANOMEFANTASIA = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
         FROM '{PATH_PARQUET}'
-        ORDER BY Nome_Fantasia ASC
-        """
+        ORDER BY Nome_Fantasia ASC"""
     ).to_df()
-
-    NOMEFANTASIA = col4.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+    NOMEFANTASIA = st.selectbox(
+        "Selecione a Empresa", DATANOMEFANTASIA["Nome_Fantasia"].tolist()
+    )
 
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
-        WHERE Ano = {ANO}
-        AND Nome_Fantasia = '{NOMEFANTASIA}'
-        """
+        AND Nome_Fantasia = '{NOMEFANTASIA}'"""
     ).to_df()
 
-    TOTALRECLAMACOES = f"""
-    <p style="color:Black; font-size: 16px; font-weight: bolder;"
-    > Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]} </p>
-    """
+    st.markdown(
+        f"""<p style="color:Black; font-size: 16px; font-weight: bolder;">
+        Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]}</p>""",
+        unsafe_allow_html=True,
+    )
 
-    st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
-
-    return ANO, NOMEFANTASIA
+    return NOMEFANTASIA
 
 
 def PypiEsttAnual():
-    """
-    Função para exibir os dados Estatísticos Anuais.
-    """
-
     st.subheader("Estatísticas Anuais")
-
-    # Colunas do Selectbox
     col1, col2 = st.columns((2, 2))
 
     DATAANO = duckdb.query(
         f"""SELECT DISTINCT(Ano)
         FROM '{PATH_PARQUET}'
-        ORDER BY Ano ASC
-        """
+        ORDER BY Ano ASC"""
     ).to_df()
-
-    ANO = col1.selectbox("Selecione o Ano", DATAANO)
+    ANO = col1.selectbox("Selecione o Ano", DATAANO["Ano"].tolist())
 
     DATANOMEFANTASIA = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
         FROM '{PATH_PARQUET}'
-        ORDER BY Nome_Fantasia ASC
-        """
+        ORDER BY Nome_Fantasia ASC"""
     ).to_df()
-
-    NOMEFANTASIA = col2.selectbox("Selecione a Empresa", DATANOMEFANTASIA)
+    NOMEFANTASIA = col2.selectbox(
+        "Selecione a Empresa", DATANOMEFANTASIA["Nome_Fantasia"].tolist()
+    )
 
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
         WHERE Ano = {ANO}
-        AND Nome_Fantasia = '{NOMEFANTASIA}'
-        """
+        AND Nome_Fantasia = '{NOMEFANTASIA}'"""
     ).to_df()
 
-    TOTALRECLAMACOES = f"""
-    <p style="color:Black; font-size: 16px; font-weight: bolder;"
-    > Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]} </p>
-    """
-
-    st.markdown(TOTALRECLAMACOES, unsafe_allow_html=True)
+    st.markdown(
+        f"""<p style="color:Black; font-size: 16px; font-weight: bolder;">
+        Total de Reclamações: {TOTALRECLAMACOES.iloc[0, 0]}</p>""",
+        unsafe_allow_html=True,
+    )
 
     return ANO, NOMEFANTASIA
 
 
 def PypGraficsA(ano, nomefantasia):
-    """
-    Função para exibir os gráficos.
-    """
-
     st.subheader("Gráficos")
-
     col1, col2, col3 = st.columns((2, 2, 2))
 
     DATA = duckdb.query(
@@ -159,10 +118,8 @@ def PypGraficsA(ano, nomefantasia):
         WHERE Ano = {ano}
         AND Nome_Fantasia = '{nomefantasia}'
         GROUP BY Mes_Finalizacao, Mes_Nome_Finalizacao
-        ORDER BY Mes_Finalizacao DESC
-        """
+        ORDER BY Mes_Finalizacao DESC"""
     ).to_df()
-
     fig = px.bar(
         DATA,
         x="TOTAL",
@@ -170,12 +127,9 @@ def PypGraficsA(ano, nomefantasia):
         text_auto=True,
         title="Qtd. Reclamações por Mês",
         height=400,
-        width=400,
     )
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col1.plotly_chart(fig, use_container_width=True)
-
-    # -----
 
     DATA1 = duckdb.query(
         f"""SELECT Regiao AS R, COUNT(*) AS TOTAL,
@@ -185,20 +139,16 @@ def PypGraficsA(ano, nomefantasia):
             WHEN 'NE' THEN 'Região Nordeste'
             WHEN 'SE' THEN 'Região Sudeste'
             WHEN 'CO' THEN 'Região Centro-Oeste'
-        END AS 'Região'
+        END AS Região
         FROM '{PATH_PARQUET}'
         WHERE Ano = {ano}
         AND Nome_Fantasia = '{nomefantasia}'
-        GROUP BY Regiao
-        """
+        GROUP BY Regiao"""
     ).to_df()
-
     fig2 = px.pie(
         DATA1, values="TOTAL", names="Região", title="Qtd. Reclamações por Região"
     )
     col2.plotly_chart(fig2, use_container_width=True)
-
-    # -----
 
     DATA2 = duckdb.query(
         f"""SELECT UF, COUNT(*) AS TOTAL
@@ -206,17 +156,13 @@ def PypGraficsA(ano, nomefantasia):
         WHERE Ano = {ano}
         AND Nome_Fantasia = '{nomefantasia}'
         GROUP BY UF
-        ORDER BY TOTAL ASC
-        """
+        ORDER BY TOTAL ASC"""
     ).to_df()
-
     fig3 = px.bar(
         DATA2, x="TOTAL", y="UF", text_auto=True, title="Qtd. Reclamações por Estado"
     )
     fig3.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col3.plotly_chart(fig3, use_container_width=True)
-
-    # -----
 
     DATA3 = duckdb.query(
         f"""SELECT Assunto, COUNT(*) AS TOTAL
@@ -224,10 +170,8 @@ def PypGraficsA(ano, nomefantasia):
         WHERE Ano = {ano}
         AND Nome_Fantasia = '{nomefantasia}'
         GROUP BY Assunto
-        ORDER BY TOTAL DESC
-        """
+        ORDER BY TOTAL DESC"""
     ).to_df()
-
     fig4 = px.bar(
         DATA3,
         x="TOTAL",
@@ -240,7 +184,6 @@ def PypGraficsA(ano, nomefantasia):
 
 
 def main():
-    # Cria as abas
     aba1, aba2 = st.tabs(["📄 Dados Gerais", "📊 Dados por Empresa"])
 
     with aba1:
@@ -257,7 +200,7 @@ def main():
             PypGraficsA(ano, nomefantasia)
 
         with subaba2:
-            ano, nomefantasia = PypiEsttGeral()
+            nomefantasia = PypiEsttGeral()
 
 
 if __name__ == "__main__":
