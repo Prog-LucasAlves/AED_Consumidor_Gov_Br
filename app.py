@@ -53,7 +53,7 @@ def PypiEstGeral():
         FROM '{PATH_PARQUET}'"""
     ).to_df()
 
-    TOTALRECLAMACOESGERALFORMAT = "{:,.0f}".format(TOTALRECLAMACOESGERAL.iloc[0, 0])
+    TOTALRECLAMACOESGERALFORMAT = "{:.0f}".format(TOTALRECLAMACOESGERAL.iloc[0, 0])
 
     st.markdown(
         f"""<p style="color:Black; font-size: 16px; font-weight: bolder;">
