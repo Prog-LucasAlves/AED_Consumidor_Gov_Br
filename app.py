@@ -53,8 +53,11 @@ def PypiEsttGeral():
         FROM '{PATH_PARQUET}'
         ORDER BY Nome_Fantasia ASC"""
     ).to_df()
+
     NOMEFANTASIA = st.selectbox(
-        "Selecione a Empresa", DATANOMEFANTASIA["Nome_Fantasia"].tolist()
+        "Selecione a Empresa",
+        DATANOMEFANTASIA["Nome_Fantasia"].tolist(),
+        key="geral_empresa",
     )
 
     TOTALRECLAMACOES = duckdb.query(
@@ -81,7 +84,7 @@ def PypiEsttAnual():
         FROM '{PATH_PARQUET}'
         ORDER BY Ano ASC"""
     ).to_df()
-    ANO = col1.selectbox("Selecione o Ano", DATAANO["Ano"].tolist())
+    ANO = col1.selectbox("Selecione o Ano", DATAANO["Ano"].tolist(), key="anual_ano")
 
     DATANOMEFANTASIA = duckdb.query(
         f"""SELECT DISTINCT(Nome_Fantasia)
@@ -89,7 +92,9 @@ def PypiEsttAnual():
         ORDER BY Nome_Fantasia ASC"""
     ).to_df()
     NOMEFANTASIA = col2.selectbox(
-        "Selecione a Empresa", DATANOMEFANTASIA["Nome_Fantasia"].tolist()
+        "Selecione a Empresa",
+        DATANOMEFANTASIA["Nome_Fantasia"].tolist(),
+        key="anual_empresa",
     )
 
     TOTALRECLAMACOES = duckdb.query(
