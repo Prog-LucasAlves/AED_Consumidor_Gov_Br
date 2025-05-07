@@ -63,7 +63,7 @@ def PypiEsttGeral():
     TOTALRECLAMACOES = duckdb.query(
         f"""SELECT COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
-        AND Nome_Fantasia = '{NOMEFANTASIA}'"""
+        WHERE Nome_Fantasia = '{NOMEFANTASIA}'"""
     ).to_df()
 
     st.markdown(
