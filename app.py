@@ -6,6 +6,7 @@ Dashboard Dados De Reclamações Consumidor Gov.br
 import streamlit as st
 import duckdb
 import plotly.express as px
+import pandas as pd
 
 # Diretório dos Dados
 PATH_PARQUET = "./Data/Data_for_clear/GOLDEN_dfGov.parquet"
@@ -137,10 +138,21 @@ def PypGraficsGeral():
     col1, col2, col3 = st.columns((2, 2, 2))
 
     DATA = duckdb.query(
-        f"""SELECT Respondida AS R, COUNT(*) AS TOTAL
+        f"""SELECT Respondida, COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
         GROUP BY Respondida"""
     ).to_df()
+
+    DATA["Respondida"] = DATA["Respondida"].map(
+        {"Sim": "Reclamação Respondida", "Não": "Reclamação Não Respondida"}
+    )
+
+    ordem = ["Reclamação Respondida", "Reclamação Não Respondida"]
+    DATA["Respondida"] = pd.Categorical(
+        DATA["Respondida"], categories=ordem, ordered=True
+    )
+    DATA = DATA.sort_values("Respondida")
+
     fig = px.bar(
         DATA,
         x="Respondida",
