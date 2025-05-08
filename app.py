@@ -142,7 +142,8 @@ def PypGraficsGeral():
             WHEN 'Sim' THEN 'Reclamação Respondida'
             WHEN 'Não' THEN 'Reclamação Não Respondida'
         END AS Status
-        FROM '{PATH_PARQUET}'"""
+        FROM '{PATH_PARQUET}'
+        GROUP BY Respondida"""
     ).to_df()
     fig = px.bar(
         DATA,
