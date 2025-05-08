@@ -147,8 +147,8 @@ def PypGraficsGeral():
     ).to_df()
     fig = px.bar(
         DATA,
-        x="TOTAL",
-        y="Status",
+        x="Status",
+        y="TOTAL",
         text_auto=True,
         title="Qtd. Reclamações por Mês",
         height=400,
