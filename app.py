@@ -132,6 +132,30 @@ def PypiEstEmAnual():
     return ANO, NOMEFANTASIAANUAL
 
 
+def PypGraficsGeral():
+    st.subheader("Gráficos")
+    col1, col2, col3 = st.columns((2, 2, 2))
+
+    DATA = duckdb.query(
+        f"""SELECT Respondida AS R, COUNT(*) AS TOTAL,
+        CASE Respondida
+            WHEN 'Sim' THEN 'Reclamação Respondida'
+            WHEN 'Não' THEN 'Reclamação Não Respondida'
+        END AS Status
+        FROM '{PATH_PARQUET}'"""
+    ).to_df()
+    fig = px.bar(
+        DATA,
+        x="TOTAL",
+        y="Status",
+        text_auto=True,
+        title="Qtd. Reclamações por Mês",
+        height=400,
+    )
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col1.plotly_chart(fig, use_container_width=True, key="respondida")
+
+
 def PypGraficsEmAnual(ano, nomefantasia):
     st.subheader("Gráficos")
     col1, col2, col3 = st.columns((2, 2, 2))
@@ -230,30 +254,6 @@ def PypGraficsEmGeral(nomefantasia):
     col1.plotly_chart(fig, use_container_width=True, key="mes_em_geral")
 
 
-def PypGraficsGeral():
-    st.subheader("Gráficos")
-    col1, col2, col3 = st.columns((2, 2, 2))
-
-    DATA = duckdb.query(
-        f"""SELECT Respondida AS R, COUNT(*) AS TOTAL,
-        CASE Respondida
-            WHEN 'Sim' THEN 'Reclamação Respondida'
-            WHEN 'Não' THEN 'Reclamação Não Respondida'
-        END AS Status
-        FROM '{PATH_PARQUET}'"""
-    ).to_df()
-    fig = px.bar(
-        DATA,
-        x="TOTAL",
-        y="Status",
-        text_auto=True,
-        title="Qtd. Reclamações por Mês",
-        height=400,
-    )
-    fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
-    col1.plotly_chart(fig, use_container_width=True, key="respondida")
-
-
 def main():
     aba1, aba2 = st.tabs(["📄 Dados Gerais", "📊 Dados por Empresa"])
 
@@ -261,6 +261,7 @@ def main():
         st.header("Dados Gerais")
         PypiAttData()
         PypiEstGeral()
+        PypGraficsGeral()
 
     with aba2:
         st.header("Dados por Empresa")
