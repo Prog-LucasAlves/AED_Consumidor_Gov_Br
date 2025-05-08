@@ -142,12 +142,6 @@ def PypGraficsGeral():
         GROUP BY Respondida"""
     ).to_df()
 
-    DATA["Respondida"] = (
-        DATA["Respondida"]
-        .str.lower()
-        .map({"S": "Reclamação Respondida", "N": "Reclamação Não Respondida"})
-    )
-
     fig = px.bar(
         DATA,
         x="Respondida",
