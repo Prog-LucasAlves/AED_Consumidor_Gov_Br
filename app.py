@@ -146,7 +146,6 @@ def PypGraficsGeral():
         DATA["Respondida"]
         .str.lower()
         .map({"S": "Reclamação Respondida", "N": "Reclamação Não Respondida"})
-        .fillna("Outro")
     )
 
     fig = px.bar(
