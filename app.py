@@ -137,20 +137,16 @@ def PypGraficsGeral():
     col1, col2, col3 = st.columns((2, 2, 2))
 
     DATA = duckdb.query(
-        f"""SELECT Respondida AS R, COUNT(*) AS TOTAL,
-        CASE Respondida
-            WHEN 'Sim' THEN 'Reclamação Respondida'
-            WHEN 'Não' THEN 'Reclamação Não Respondida'
-        END AS Status
+        f"""SELECT Respondida AS R, COUNT(*) AS TOTAL
         FROM '{PATH_PARQUET}'
         GROUP BY Respondida"""
     ).to_df()
     fig = px.bar(
         DATA,
-        x="Status",
+        x="Respondida",
         y="TOTAL",
         text_auto=True,
-        title="Qtd. Reclamações por Mês",
+        title="Qtd. de Reclamações Respondidas e não Respondidas",
         height=400,
     )
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
