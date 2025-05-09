@@ -169,6 +169,10 @@ def PypGraficsGeral():
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col2.plotly_chart(fig, use_container_width=True, key="R2")
 
+    DATA3 = ...
+
+    return DATA3
+
 
 def PypGraficsEmAnual(ano, nomefantasia):
     st.subheader("Gráficos")
