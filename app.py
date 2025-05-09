@@ -153,6 +153,22 @@ def PypGraficsGeral():
     fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
     col1.plotly_chart(fig, use_container_width=True, key="respondida")
 
+    DATA1 = duckdb.query(
+        f"""SELECT Sexo, COUNT(*) AS TOTAL
+        FROM '{PATH_PARQUET}'
+        GROUP BY Sexo"""
+    ).to_df()
+    fig = px.bar(
+        DATA1,
+        x="Sexo",
+        y="TOTAL",
+        text_auto=True,
+        title="Qtd. de Reclamações Respondidas por Sexo",
+        height=400,
+    )
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode="hide")
+    col2.plotly_chart(fig, use_container_width=True, key="sexo")
+
 
 def PypGraficsEmAnual(ano, nomefantasia):
     st.subheader("Gráficos")
