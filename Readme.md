@@ -6,7 +6,7 @@
 
 - Dados extraidos nesse *[link](https://www.consumidor.gov.br/pages/dadosabertos/externo/)*
 
-- Dados de 01/2021 ate o mês 03/2025 - Atualizado dia 05/05/2025
+- Dados de 01/2021 ate o mês 11/2025 - Atualizado dia 09/01/2025
 
 ## 💬 Sobre o Serviço
 
@@ -16,15 +16,16 @@
 
 **Considerações:**
 
-- Após a união do arquivos CSVs, o DataFrame ficou com 5431641 registros e 19 colunas.
-- Foi verificado que o DataFrame havia 2.76% de valores ausentes(Em 4 colunas do DataFrame).
+- Após a união do arquivos CSVs, o DataFrame ficou com 7042914 registros e 21 colunas.
+- As colunas 'Último Complemento Consumidor' e 'Interação com Judiciario' foram removidas por possuirem muitos valores ausentes(98.75% e 96.51% respectivamente).
+- Foi verificado que o DataFrame havia 2.96% de valores ausentes(Em 4 colunas do DataFrame).
 
 | Coluna | Valores Ausentes | % de Valores Ausentes |
 | ------ | ---------------- | --------------------- |
-| Nota do Consumidor | 2740511 | 50.45 |
-| Tempo Resposta | 102725 | 1.89 |
-| Sexo | 322 | 0.01 |
-| Avaliação Reclamação | 6 | 0.00 |
+| Nota do Consumidor | 3805711 | 54.04 |
+| Tempo Resposta | 149925 | 2.13 |
+| Sexo | 353 | 0.01 |
+| Avaliação Reclamação | 10 | 0.00 |
 
 **Etapas:**
 
@@ -37,9 +38,9 @@
 
 2. linhas Duplicadas
 
-    1. Foram eliminadas do Dataframe as linhas duplicadas(19109).
+    1. Foram eliminadas do Dataframe as linhas duplicadas(30591).
 
-- Após as transformações realizadas o DataSet ficou com 5431612 registros e 19 colunas.
+- Após as transformações realizadas o DataSet ficou com 7012290 registros e 19 colunas.
 
 ## ![Perguntas a serem respondidas](https://cdn-icons-png.flaticon.com/24/4501/4501315.png) Perguntas a serem respondidas
 
