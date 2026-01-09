@@ -48,7 +48,7 @@
 
 ## ![Deploy dos dados](https://cdn-icons-png.flaticon.com/24/1508/1508878.png) Deploy dos dados
 
-[Site](https://bit.ly/3AVnEFo)
+[Site](https://consumidor-gov-br-dash-service.onrender.com/)
 
 ## ![Planejamento](https://cdn-icons-png.flaticon.com/24/5341/5341024.png) Planejamento
 
